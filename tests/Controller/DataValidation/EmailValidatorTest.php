@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: ivanicspeter92
- * Date: 28/09/2018
- * Time: 19.32
- */
 
 namespace App\Tests\Controller\DataValidation;
 
