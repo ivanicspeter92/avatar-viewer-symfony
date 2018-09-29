@@ -11,6 +11,10 @@ class UserWithAllValuesTest extends \PHPUnit\Framework\TestCase
     private $profileImageURL;
     private $profileImageProvider;
     private $addedDate;
+    /**
+     * @var User
+     */
+    private $testUser;
 
     public function __construct(?string $name = null, array $data = [], string $dataName = '')
     {
@@ -21,11 +25,6 @@ class UserWithAllValuesTest extends \PHPUnit\Framework\TestCase
         $this->profileImageProvider = ProfileImageProvider::Gravatar;
         $this->addedDate = new \DateTime("2018-09-28T18:38:24.584930Z");
     }
-
-    /**
-     * @var User
-     */
-    private $testUser;
 
     public function setUp()
     {
