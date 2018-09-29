@@ -22,7 +22,10 @@
         "symfony/validator": "*",
         "symfony/web-link": "*",
         "symfony/yaml": "*",
-        "phpunit/phpunit": "^6.0"
+        "phpunit/phpunit": "^6.0",
+        "ornicar/gravatar-bundle" : "~1.0",
+        "fastre/libravatar-bundle": "*@dev",
+        "ext-json": "*"
     },
     "require-dev": {
         "symfony/debug-pack": "*",
