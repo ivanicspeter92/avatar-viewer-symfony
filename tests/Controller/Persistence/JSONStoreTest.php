@@ -71,3 +71,113 @@ class UsersViaDefaultPathTest extends \PHPUnit\Framework\TestCase
         }
     }
 }
+
+class ParseUserRecordWithEmailAndAddedDateTest extends \PHPUnit\Framework\TestCase
+{
+    /**
+     * @var array
+     */
+    private $record;
+    /**
+     * @var User
+     */
+    private $user;
+
+    public function setUp()
+    {
+        parent::setUp();
+
+        $this->record = array(
+            "email" => "ivanicspeter92@gmail.com",
+            "added_date" => "2018-09-28T18:38:24.584930Z"
+        );
+        $this->user = JSONStore::parseUser($this->record);
+    }
+
+    public function testEmailsAreEqual()
+    {
+        $this->assertEquals($this->record["email"], $this->user->getEmail());
+    }
+
+    public function testAddedDatesAreEqual()
+    {
+        $this->assertEquals(new \DateTime($this->record["added_date"]), $this->user->getAddedDate());
+    }
+}
+
+class ParseUserRecordFromEmptyDictionaryTest extends \PHPUnit\Framework\TestCase
+{
+    /**
+     * @var array
+     */
+    private $record;
+    /**
+     * @var User
+     */
+    private $user;
+
+    public function setUp()
+    {
+        parent::setUp();
+
+        $this->record = array();
+        $this->user = JSONStore::parseUser($this->record);
+    }
+
+    public function testUserIsParsedAsNull()
+    {
+        $this->assertNull($this->user);
+    }
+}
+
+class ParseUserRecordWithEmailAddressOnlyTest extends \PHPUnit\Framework\TestCase
+{
+    /**
+     * @var array
+     */
+    private $record;
+    /**
+     * @var User
+     */
+    private $user;
+
+    public function setUp()
+    {
+        parent::setUp();
+
+        $this->record = array(
+            "email" => "ivanicspeter92@gmail.com"
+        );
+        $this->user = JSONStore::parseUser($this->record);
+    }
+
+    public function testUserIsParsedAsUser()
+    {
+        $this->assertTrue($this->user instanceof User);
+    }
+
+    public function testEmailsAreEqual()
+    {
+        $this->assertEquals($this->record["email"], $this->user->getEmail());
+    }
+
+    public function testAddedDateIsNotNull()
+    {
+        $this->assertNotNull($this->user->getAddedDate());
+    }
+
+    public function testAddedDateIsBeforeCurrentTimetamp()
+    {
+        $this->assertLessThanOrEqual(new \DateTime(), $this->user->getAddedDate());
+    }
+
+    public function testProfileImageProviderIsNull()
+    {
+        $this->assertNull($this->user->getProfileImageProvider());
+    }
+
+    public function testProfileImageIsNull()
+    {
+        $this->assertNull($this->user->getProfileImageUrl());
+    }
+}

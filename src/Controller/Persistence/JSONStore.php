@@ -35,9 +35,15 @@ class JSONStore extends PersistenceStore
     }
 
     # region Parser functions
-    private function parseUser($record)
+    public static function parseUser($record)
     {
-        return new User($record["email"], $record["profile_image_url"], $record["profile_image_provider"], $record["added_date"]);
+        if (isset($record["email"])) {
+            $email = $record["email"];
+
+            return new User($email, @$record["profile_image_url"], @$record["profile_image_provider"], new \DateTime(@$record["added_date"]));
+        } else {
+            return null;
+        }
     }
     # endregion
 }
