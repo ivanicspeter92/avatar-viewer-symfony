@@ -3,7 +3,6 @@
 namespace App\Controller\IO;
 
 use Doctrine\Instantiator\Exception\UnexpectedValueException;
-use PHPUnit\Runner\Exception;
 use Symfony\Component\Dotenv\Exception\PathException;
 
 class JSONDataLoader implements RawDataLoader
