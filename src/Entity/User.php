@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use App\Controller\DataValidation\EmailValidator;
+
 class User
 {
     private $email;
@@ -27,6 +29,14 @@ class User
         } else {
             $this->added_date = new \DateTime();
         }
+    }
+
+    /**
+     * @return bool
+     */
+    public function hasValidEmail()
+    {
+        return EmailValidator::validate($this->email);
     }
 
     /**
