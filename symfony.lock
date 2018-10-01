@@ -98,6 +98,9 @@
     "ornicar/gravatar-bundle": {
         "version": "1.3.0"
     },
+    "pear/services_libravatar": {
+        "version": "v0.2.4"
+    },
     "phpdocumentor/reflection-common": {
         "version": "1.0.1"
     },
