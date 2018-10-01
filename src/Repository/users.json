@@ -1,14 +1,16 @@
 [
   {
     "email": "ivanicspeter92@gmail.com",
-    "profile_image_url": "",
-    "profile_image_provider": "",
+    "profile_image_url": "https://www.gravatar.com/avatar/a45e413399ecc1437f4a9426e5b47161",
     "added_date": "2018-09-28T18:38:24.584930Z"
   },
   {
     "email": "example@example.com",
-    "profile_image_url": "",
-    "profile_image_provider": "",
     "added_date": "2018-09-29T12:00:00.584930Z"
+  },
+  {
+    "email": "somebody@example.com",
+    "added_date": "2000-01-01T12:00:00.000000Z",
+    "profile_image_url": null
   }
 ]
