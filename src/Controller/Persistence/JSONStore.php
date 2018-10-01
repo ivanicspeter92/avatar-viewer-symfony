@@ -6,9 +6,10 @@ use App\Controller\IO\JSONDataLoader;
 use Symfony\Component\Dotenv\Exception\PathException;
 use App\Entity\User;
 
+
 class JSONStore extends PersistenceStore
 {
-    const defaultPath = "src/Repository";
+    const defaultPath = __DIR__ . "/../../Repository";  // not very elegant, should be using root path to the repository instead if possible
 
     /**
      * @var string
@@ -40,7 +41,7 @@ class JSONStore extends PersistenceStore
         if (isset($record["email"])) {
             $email = $record["email"];
 
-            return new User($email, @$record["profile_image_url"], @$record["profile_image_provider"], new \DateTime(@$record["added_date"]));
+            return new User($email, @$record["profile_image_url"], new \DateTime(@$record["added_date"]));
         } else {
             return null;
         }

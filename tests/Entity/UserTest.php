@@ -4,12 +4,12 @@ namespace App\Tests\Entity;
 
 use App\Entity\User;
 use App\Entity\ProfileImageProvider;
+use Symfony\Component\Validator\Constraints\Date;
 
 class UserWithAllValuesTest extends \PHPUnit\Framework\TestCase
 {
     private $email;
     private $profileImageURL;
-    private $profileImageProvider;
     private $addedDate;
     /**
      * @var User
@@ -22,7 +22,6 @@ class UserWithAllValuesTest extends \PHPUnit\Framework\TestCase
 
         $this->email = "ivanicspeter92@gmail.com";
         $this->profileImageURL = "https://s.gravatar.com/avatar/a45e413399ecc1437f4a9426e5b47161?s=80";
-        $this->profileImageProvider = ProfileImageProvider::Gravatar;
         $this->addedDate = new \DateTime("2018-09-28T18:38:24.584930Z");
     }
 
@@ -30,7 +29,7 @@ class UserWithAllValuesTest extends \PHPUnit\Framework\TestCase
     {
         parent::setUp();
 
-        $this->testUser = new User($this->email, $this->profileImageURL, $this->profileImageProvider, $this->addedDate);
+        $this->testUser = new User($this->email, $this->profileImageURL, $this->addedDate);
     }
 
     public function testGetEmail()
@@ -45,7 +44,7 @@ class UserWithAllValuesTest extends \PHPUnit\Framework\TestCase
 
     public function testProfileImageProvider()
     {
-        $this->assertEquals($this->profileImageProvider, $this->testUser->getProfileImageProvider());
+        $this->assertEquals(ProfileImageProvider::Gravatar, $this->testUser->getProfileImageProvider());
     }
 
     public function testGetAddedDate()
@@ -58,7 +57,6 @@ class UserInitializedWithoutAddedDate extends \PHPUnit\Framework\TestCase
 {
     private $email;
     private $profileImageURL;
-    private $profileImageProvider;
 
     public function __construct(?string $name = null, array $data = [], string $dataName = '')
     {
@@ -66,7 +64,6 @@ class UserInitializedWithoutAddedDate extends \PHPUnit\Framework\TestCase
 
         $this->email = "ivanicspeter92@gmail.com";
         $this->profileImageURL = "https://s.gravatar.com/avatar/a45e413399ecc1437f4a9426e5b47161?s=80";
-        $this->profileImageProvider = ProfileImageProvider::Gravatar;
     }
 
     /**
@@ -78,7 +75,7 @@ class UserInitializedWithoutAddedDate extends \PHPUnit\Framework\TestCase
     {
         parent::setUp();
 
-        $this->testUser = new User($this->email, $this->profileImageURL, $this->profileImageProvider); // datetime should default to NOW
+        $this->testUser = new User($this->email, $this->profileImageURL); // datetime should default to NOW
     }
 
     public function testAddedIsNotNull()
@@ -89,5 +86,21 @@ class UserInitializedWithoutAddedDate extends \PHPUnit\Framework\TestCase
     public function testAddedDateIsBeforeNow()
     {
         $this->assertLessThan(new \DateTime(), $this->testUser->getAddedDate());
+    }
+}
+
+class UserComparisonTest extends \PHPUnit\Framework\TestCase {
+    public function testUserEqualsItself()
+    {
+        $user = new User("ivanicspeter92@gmail.com");
+        $this->assertEquals($user, $user);
+    }
+
+    public function testSameEmailAndAddedDateUsersAreEquals()
+    {
+        $userA = new User("ivanicspeter92@gmail.com", null, new \DateTime("2000-01-01"));
+        $userB = new User("ivanicspeter92@gmail.com", null, new \DateTime("2000-01-01"));
+
+        $this->assertEquals($userA, $userB);
     }
 }
