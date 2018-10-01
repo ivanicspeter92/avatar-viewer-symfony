@@ -6,7 +6,7 @@ interface ProfileImageObtainer
 {
     /**
      * @param $email string
-     * @return mixed; a URL string to the image or null if it cannot be found.
+     * @return string; a URL string to the image
      */
     public function getImageURLForEmail($email);
 }
