@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "60797b42f667a605cd7cf700155679bc",
+    "content-hash": "300e4ae330f5e9f4212d657cc3ea1f19",
     "packages": [
         {
             "name": "doctrine/annotations",
@@ -1640,52 +1640,6 @@
                 "twig"
             ],
             "time": "2018-02-01T09:44:32+00:00"
-        },
-        {
-            "name": "pear/services_libravatar",
-            "version": "v0.2.4",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/pear/Services_Libravatar.git",
-                "reference": "8b9fda8c896afb18fdedc60ead29ee305ea222e9"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/pear/Services_Libravatar/zipball/8b9fda8c896afb18fdedc60ead29ee305ea222e9",
-                "reference": "8b9fda8c896afb18fdedc60ead29ee305ea222e9",
-                "shasum": ""
-            },
-            "require-dev": {
-                "phpunit/phpunit": "^5.7.0"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-0": {
-                    "Services": "./Services/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "include-path": [
-                "./"
-            ],
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Christian Weiske",
-                    "email": "cweiske@php.net",
-                    "role": "Developer"
-                },
-                {
-                    "name": "Melissa Draper",
-                    "email": "melissa@meldraweb.com",
-                    "role": "Lead"
-                }
-            ],
-            "description": "API interfacing class for libravatar.org",
-            "homepage": "http://pear.php.net/package/Services_Libravatar",
-            "time": "2017-08-23T20:23:02+00:00"
         },
         {
             "name": "phpdocumentor/reflection-common",
@@ -5539,6 +5493,52 @@
                 "php"
             ],
             "time": "2018-09-18T07:03:24+00:00"
+        },
+        {
+            "name": "pear/services_libravatar",
+            "version": "v0.2.4",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/pear/Services_Libravatar.git",
+                "reference": "8b9fda8c896afb18fdedc60ead29ee305ea222e9"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/pear/Services_Libravatar/zipball/8b9fda8c896afb18fdedc60ead29ee305ea222e9",
+                "reference": "8b9fda8c896afb18fdedc60ead29ee305ea222e9",
+                "shasum": ""
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^5.7.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "Services": "./Services/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "include-path": [
+                "./"
+            ],
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Christian Weiske",
+                    "email": "cweiske@php.net",
+                    "role": "Developer"
+                },
+                {
+                    "name": "Melissa Draper",
+                    "email": "melissa@meldraweb.com",
+                    "role": "Lead"
+                }
+            ],
+            "description": "API interfacing class for libravatar.org",
+            "homepage": "http://pear.php.net/package/Services_Libravatar",
+            "time": "2017-08-23T20:23:02+00:00"
         },
         {
             "name": "symfony/browser-kit",
