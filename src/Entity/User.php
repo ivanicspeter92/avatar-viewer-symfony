@@ -6,7 +6,7 @@ use App\Controller\DataValidation\EmailValidator;
 // use App\Controller\ProfileImageRetrieval\GravatarImageObtainer;
 // use App\Controller\ProfileImageRetrieval\LibravatarImageObtainer;
 
-class User
+class User implements \JsonSerializable
 {
     private $email;
     private $profile_image_url;
@@ -58,4 +58,14 @@ class User
     {
         return $this->added_date;
     }
+
+    # region JsonSerializable
+    public function jsonSerialize()
+    {
+        return [
+            "email" => $this->email,
+            "added_date" => $this->added_date->format('Y-m-d\TH:i:s\Z')
+        ];
+    }
+    # endregion
 }
