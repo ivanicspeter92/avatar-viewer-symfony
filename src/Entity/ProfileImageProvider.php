@@ -8,6 +8,16 @@ namespace App\Entity;
  */
 abstract class ProfileImageProvider
 {
-    const Gravatar = 0;
-    const Libravatar = 1;
+    const Gravatar = "Gravatar";
+    const Libravatar = "Libravatar";
+
+    static public function recognizeFromURL($string) {
+        if (is_string($string)) {
+            if (strpos(strtolower($string), "gravatar") != 0)
+                return ProfileImageProvider::Gravatar;
+            elseif (strpos(strtolower($string), "libravatar") != 0)
+                return ProfileImageProvider::Libravatar;
+        }
+        return null;
+    }
 }
