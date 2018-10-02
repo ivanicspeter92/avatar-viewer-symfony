@@ -3,12 +3,8 @@
 namespace App\Entity;
 
 use App\Controller\DataValidation\EmailValidator;
-use App\Entity\JSONDeserializable;
-// use App\Controller\ProfileImageRetrieval\GravatarImageObtainer;
-// use App\Controller\ProfileImageRetrieval\LibravatarImageObtainer;
 
-class User implements \JsonSerializable, JSONDeserializable
-{
+class User implements \JsonSerializable, JSONDeserializable {
     private $email;
     private $profile_image_url;
     private $added_date;
@@ -19,13 +15,8 @@ class User implements \JsonSerializable, JSONDeserializable
      * @param string $profile_image_url
      * @param \DateTime $added_date The date when the user was added. If null is given, defaults to the current timestamp.
      */
-    public function __construct($email, $profile_image_url = null, $added_date = null)
-    {
+    public function __construct($email, $profile_image_url = null, $added_date = null) {
         $this->email = $email;
-
-        // if($profile_image_url == null) // fallback to find an image
-        //     $profile_image_url = (new GravatarImageObtainer())->getImageURLForEmail($email) ?: (new LibravatarImageObtainer())->getImageURLForEmail($email);
-
         $this->profile_image_url = $profile_image_url;
 
         if ($added_date instanceof \DateTime) {
@@ -35,13 +26,11 @@ class User implements \JsonSerializable, JSONDeserializable
         }
     }
 
-    public function hasValidEmail(): bool
-    {
+    public function hasValidEmail(): bool {
         return EmailValidator::validate($this->email);
     }
 
-    public function getEmail(): string
-    {
+    public function getEmail(): string {
         return $this->email;
     }
 
@@ -50,19 +39,16 @@ class User implements \JsonSerializable, JSONDeserializable
         return $this->profile_image_url;
     }
 
-    public function getProfileImageProvider()
-    {
+    public function getProfileImageProvider() {
         return ProfileImageProvider::recognizeFromURL($this->profile_image_url);
     }
 
-    public function getAddedDate(): \DateTime
-    {
+    public function getAddedDate(): \DateTime {
         return $this->added_date;
     }
 
     # region JsonSerializable
-    public function jsonSerialize()
-    {
+    public function jsonSerialize() {
         return [
             "email" => $this->email,
             "profile_image_url" => $this->profile_image_url,
@@ -72,8 +58,7 @@ class User implements \JsonSerializable, JSONDeserializable
     # endregion
 
     # region JSONDeserializable
-    public static function fromJSON($json)
-    {
+    public static function fromJSON($json) {
         if (isset($json["email"])) {
             $email = $json["email"];
 
