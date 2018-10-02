@@ -27,6 +27,10 @@ class LibravatarImageObtainerTest extends TestCase
         $this->assertNull($this->obtainer->getImageURLForEmail(null));
     }
 
+    public function testNullIsReturnedForGibberishEmail() {
+        $this->assertNull($this->obtainer->getImageURLForEmail("dsadas@gmail.com"));
+    }
+
     public function testExpectedURLContainsImageIDForMyEmail()
     {
         $expectedID = "a45e413399ecc1437f4a9426e5b47161";

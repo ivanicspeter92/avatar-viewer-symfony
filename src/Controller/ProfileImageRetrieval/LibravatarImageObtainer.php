@@ -6,18 +6,16 @@ use Services_Libravatar;
 
 class LibravatarImageObtainer implements ProfileImageObtainer
 {
-    private const defaultAvatarIdentifier = "d41d8cd98f00b204e9800998ecf8427e";
-
     public function getImageURLForEmail($email)
     {
         $api = new Services_Libravatar();
+        $api->setDefault("404");
 
         $url = $api->getUrl($email);
-
-        if (strpos($url, LibravatarImageObtainer::defaultAvatarIdentifier)) {
-            return null;
-        } else {
+        if (@file_get_contents($url)) { // check if the content of the URL is valid data
             return $url;
+        } else {
+            return null;
         }
     }
 }
