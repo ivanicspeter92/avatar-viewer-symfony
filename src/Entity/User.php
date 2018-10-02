@@ -65,6 +65,7 @@ class User implements \JsonSerializable, JSONDeserializable
     {
         return [
             "email" => $this->email,
+            "profile_image_url" => $this->profile_image_url,
             "added_date" => $this->added_date->format('Y-m-d\TH:i:s\Z')
         ];
     }
