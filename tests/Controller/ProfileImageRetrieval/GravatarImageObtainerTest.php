@@ -7,8 +7,6 @@ use PHPUnit\Framework\TestCase;
 
 class GravatarImageObtainerTest extends TestCase
 {
-    const expectedDefaultIdentifier = "d41d8cd98f00b204e9800998ecf8427e";
-
     /**
      * @var GravatarImageObtainer
      */
@@ -19,15 +17,14 @@ class GravatarImageObtainerTest extends TestCase
         $this->obtainer = new GravatarImageObtainer();
     }
 
-
-    public function testDefaultReturnedForEmptyEmailString()
+    public function testNullIsReturnedForEmptyEmailString()
     {
-        $this->assertContains(GravatarImageObtainerTest::expectedDefaultIdentifier, $this->obtainer->getImageURLForEmail(""));
+        $this->assertNull($this->obtainer->getImageURLForEmail(""));
     }
 
-    public function testDefaultIsReturnedForNullEmail()
+    public function testNullIsReturnedForNullEmail()
     {
-        $this->assertContains(GravatarImageObtainerTest::expectedDefaultIdentifier, $this->obtainer->getImageURLForEmail(null));
+        $this->assertNull($this->obtainer->getImageURLForEmail(null));
     }
 
     public function testExpectedURLContainsImageIDForMyEmail()

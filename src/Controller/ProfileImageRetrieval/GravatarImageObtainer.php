@@ -9,8 +9,13 @@ class GravatarImageObtainer implements ProfileImageObtainer
     public function getImageURLForEmail($email)
     {
         $api = new GravatarApi();
-        $url = $api->getURL($email);
 
-        return $url;
+        if ($api->exists($email)) {
+            $url = $api->getURL($email);
+
+            return $url;
+        } else {
+            return null;
+        }
     }
 }

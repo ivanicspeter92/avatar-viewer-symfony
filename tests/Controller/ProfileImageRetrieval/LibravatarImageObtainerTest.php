@@ -7,8 +7,6 @@ use PHPUnit\Framework\TestCase;
 
 class LibravatarImageObtainerTest extends TestCase
 {
-    const expectedDefaultIdentifier = "d41d8cd98f00b204e9800998ecf8427e";
-
     /**
      * @var LibravatarImageObtainer
      */
@@ -19,14 +17,14 @@ class LibravatarImageObtainerTest extends TestCase
         $this->obtainer = new LibravatarImageObtainer();
     }
 
-    public function testDefaultReturnedForEmptyEmailString()
+    public function testNullIsReturnedForEmptyEmailString()
     {
-        $this->assertContains(LibravatarImageObtainerTest::expectedDefaultIdentifier, $this->obtainer->getImageURLForEmail(""));
+        $this->assertNull($this->obtainer->getImageURLForEmail(""));
     }
 
-    public function testDefaultIsReturnedForNullEmail()
+    public function testNullIsReturnedForNullEmail()
     {
-        $this->assertContains(LibravatarImageObtainerTest::expectedDefaultIdentifier, $this->obtainer->getImageURLForEmail(null));
+        $this->assertNull($this->obtainer->getImageURLForEmail(null));
     }
 
     public function testExpectedURLContainsImageIDForMyEmail()
