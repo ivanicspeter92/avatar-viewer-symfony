@@ -27,24 +27,24 @@ class JSONStore extends PersistenceStore
 
     public function getUsers()
     {
-        $rawUsers = JSONDataLoader::loadJSONFileContentsAtPath($this->pathToFiles . "/users.json");
+        $rawUsers = JSONDataLoader::loadJSONFileContentsAtPath($this->getUsersPath());
         $parsedUsers = array_map(function ($u) {
-            return $this->parseUser($u);
+            return User::fromJSON($u);
         }, $rawUsers);
 
         return $parsedUsers;
     }
 
-    # region Parser functions
-    public static function parseUser($record)
-    {
-        if (isset($record["email"])) {
-            $email = $record["email"];
+    public function saveUsers($users) {
+        $fp = fopen($this->getUsersPath(), 'w');
+        fwrite($fp, json_encode($users));
+        fclose($fp);
+    }
 
-            return new User($email, @$record["profile_image_url"], new \DateTime(@$record["added_date"]));
-        } else {
-            return null;
-        }
+    # region Private
+    private function getUsersPath()
+    {
+        return $this->pathToFiles . "/users.json";
     }
     # endregion
 }

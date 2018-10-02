@@ -3,10 +3,11 @@
 namespace App\Entity;
 
 use App\Controller\DataValidation\EmailValidator;
+use App\Entity\JSONDeserializable;
 // use App\Controller\ProfileImageRetrieval\GravatarImageObtainer;
 // use App\Controller\ProfileImageRetrieval\LibravatarImageObtainer;
 
-class User implements \JsonSerializable
+class User implements \JsonSerializable, JSONDeserializable
 {
     private $email;
     private $profile_image_url;
@@ -66,6 +67,19 @@ class User implements \JsonSerializable
             "email" => $this->email,
             "added_date" => $this->added_date->format('Y-m-d\TH:i:s\Z')
         ];
+    }
+    # endregion
+
+    # region JSONDeserializable
+    public static function fromJSON($json)
+    {
+        if (isset($json["email"])) {
+            $email = $json["email"];
+
+            return new User($email, @$json["profile_image_url"], new \DateTime(@$json["added_date"]));
+        } else {
+            return null;
+        }
     }
     # endregion
 }
