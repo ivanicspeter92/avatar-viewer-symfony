@@ -3,7 +3,7 @@
 namespace App\Tests\ViewModel;
 
 use PHPUnit\Framework\TestCase;
-use App\ViewModel\UserListViewModel;
+use App\Entity\UserList;
 use App\Entity\User;
 
 class UserListWithStringArrayInitializationTest extends TestCase
@@ -14,7 +14,7 @@ class UserListWithStringArrayInitializationTest extends TestCase
     {
         parent::__construct();
 
-        $this->userList = new UserListViewModel(array("user1", "user2", "user3"));
+        $this->userList = new UserList(array("user1", "user2", "user3"));
     }
 
     public function testGetUsersReturnsEmptyArray()
@@ -37,7 +37,7 @@ class UserListWithWithNowTimestampedUserEntityObjectArrayTest extends TestCase
             new User("example@example.com"),
             new User("test@test.com") // initialized last, has youngest timestamp
         );
-        $this->userList = new UserListViewModel($this->users);
+        $this->userList = new UserList($this->users);
     }
 
     public function testGetUsersReturnsArrayOfLengthThree()
@@ -65,7 +65,7 @@ class UserListWithWithCustomTimestampedUserEntityObjectArrayTest extends TestCas
             new User("oldest@test.com", null, new \DateTime("1992-05-25")),
             new User("middle@test.com", null, new \DateTime("2000-01-01"))
         );
-        $this->userList = new UserListViewModel($this->users);
+        $this->userList = new UserList($this->users);
     }
 
     public function testGetUsersReturnsArrayOfLengthThree()
