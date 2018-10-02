@@ -1,0 +1,72 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Avatar viewer</h1>
+
+    {% if submission_result is not null %}
+        {% if submission_result == true %}
+            <div class="alert alert-success">Successfully added avatar</div>
+        {% else %}
+            <div class="alert alert-danger">Failed to add avatar</div>
+        {% endif %}
+    {% endif %}
+
+    <div class="container-fluid">
+        <div class="row top-buffer">
+            <div class="column col-xs-10">
+                <h2>Avatars</h2>
+
+                <table class="table table-striped">
+                    <thead>
+                        <th>
+                            Avatar
+                        </th>
+                        <th>
+                            Email
+                        </th>
+                        <th>
+                            Provider
+                        </th>
+                        <th>
+                            Added date
+                        </th>
+                    </thead>
+                    <tbody>
+                        {% for user in users %}
+                            <tr>
+                                <td>
+                                    {% if user.getProfileImageUrl()  %}
+                                        <img src="{{ user.getProfileImageUrl() }}" />
+                                    {% endif %}
+                                </td>
+                                <td>
+                                    {{ user.getEmail() }}
+                                </td>
+                                <td>
+                                    {{ user.getProfileImageProvider() ?: "" }}
+                                </td>
+                                <td>
+                                    {{ user.getAddedDate()|date("Y-m-d h-m-s") }}
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="column col-xs-2">
+                <h2>Add new avatar</h2>
+
+                {{ form_start(form) }}
+                    {{ form_widget(form) }}
+
+                    <div class="text-center">
+                        <input type="submit" class="btn btn-primary lightblue" value="Add" />
+                    </div>
+                {{ form_end(form) }}
+            </div>
+        </div>
+    </div>
+
+
+{% endblock %}
