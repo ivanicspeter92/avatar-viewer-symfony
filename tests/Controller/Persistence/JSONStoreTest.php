@@ -89,7 +89,7 @@ class SaveAndReadBackTest extends \PHPUnit\Framework\TestCase {
     public function setUp() {
         parent::setUp();
 
-        $this->store = new JSONStore();
+        $this->store = new JSONStore(".");
         $this->initialUsers = $this->store->getUsers();
 
         $newUserEmail = $this->generateRandomString(5) . "@gmail.com";

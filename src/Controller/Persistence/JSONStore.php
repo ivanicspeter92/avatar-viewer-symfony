@@ -28,12 +28,16 @@ class JSONStore extends PersistenceStore {
     }
 
     public function getUsers() {
-        $rawUsers = JSONDataLoader::loadJSONFileContentsAtPath($this->getUsersPath());
-        $parsedUsers = array_map(function ($u) {
-            return User::fromJSON($u);
-        }, $rawUsers);
+        try {
+            $rawUsers = JSONDataLoader::loadJSONFileContentsAtPath($this->getUsersPath());
+            $parsedUsers = array_map(function ($u) {
+                return User::fromJSON($u);
+            }, $rawUsers);
 
-        return $parsedUsers;
+            return $parsedUsers;
+        } catch (PathException $ex) {
+            return array();
+        }
     }
 
     public function saveUsers($users) {
