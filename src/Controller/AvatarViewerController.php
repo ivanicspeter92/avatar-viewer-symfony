@@ -27,9 +27,10 @@ class AvatarViewerController extends AbstractController {
     /**
      * @Route("/", name="AvatarViewer")
      * @param mixed $submissionResult
+     * @param mixed $submissionMessage
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function index($submissionResult = null) {
+    public function index($submissionResult = null, $submissionMessage = null) {
         $formBuilder = $this->createFormBuilder();
         $formBuilder->add("email");
         $formBuilder->setAction($this->generateUrl("handleFormSubmission"));
@@ -39,7 +40,8 @@ class AvatarViewerController extends AbstractController {
             'controller_name' => 'AvatarViewerController',
             'users' => $this->users->getUsers(),
             'form' => $form->createView(),
-            'submission_result' => $submissionResult
+            'submission_result' => $submissionResult,
+            'submission_message' => $submissionMessage
         ]);
     }
 
@@ -61,7 +63,7 @@ class AvatarViewerController extends AbstractController {
 
             return $this->index(true);
         } else { // TODO: possible improvement: do not render the view again, but display an error message near the form's submit button
-            return $this->index(false);
+            return $this->index(false, "The provided email is invalid.");
         }
     }
 }

@@ -7,7 +7,9 @@
         {% if submission_result == true %}
             <div class="alert alert-success">Successfully added avatar</div>
         {% else %}
-            <div class="alert alert-danger">Failed to add avatar</div>
+            <div class="alert alert-danger">
+                Failed to add avatar - {{ submission_message ?: "An unknown error has occurred." }}
+            </div>
         {% endif %}
     {% endif %}
 
