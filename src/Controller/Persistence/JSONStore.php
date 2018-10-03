@@ -7,8 +7,7 @@ use Symfony\Component\Dotenv\Exception\PathException;
 use App\Entity\User;
 
 
-class JSONStore extends PersistenceStore
-{
+class JSONStore extends PersistenceStore {
     const defaultPath = __DIR__ . "/../../Repository";  // not very elegant, should be using root path to the repository instead if possible
 
     /**
@@ -16,8 +15,7 @@ class JSONStore extends PersistenceStore
      */
     private $pathToFiles;
 
-    public function __construct($pathToFiles = JSONStore::defaultPath)
-    {
+    public function __construct($pathToFiles = JSONStore::defaultPath) {
         if (file_exists($pathToFiles)) {
             $this->pathToFiles = $pathToFiles;
         } else {
@@ -25,10 +23,9 @@ class JSONStore extends PersistenceStore
         }
     }
 
-    public function getUsers()
-    {
+    public function getUsers() {
         $rawUsers = JSONDataLoader::loadJSONFileContentsAtPath($this->getUsersPath());
-        $parsedUsers = array_map(function ($u) {
+        $parsedUsers = array_map(function (User $u) {
             return User::fromJSON($u);
         }, $rawUsers);
 
@@ -42,8 +39,7 @@ class JSONStore extends PersistenceStore
     }
 
     # region Private
-    private function getUsersPath()
-    {
+    private function getUsersPath() {
         return $this->pathToFiles . "/users.json";
     }
     # endregion
