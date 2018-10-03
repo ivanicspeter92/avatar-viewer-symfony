@@ -3,7 +3,6 @@
 namespace App\Entity;
 
 
-interface JSONDeserializable
-{
+interface JSONDeserializable {
     public static function fromJSON($json);
 }

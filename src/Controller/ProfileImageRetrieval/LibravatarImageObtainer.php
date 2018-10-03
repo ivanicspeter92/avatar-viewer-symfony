@@ -4,10 +4,8 @@ namespace App\Controller\ProfileImageRetrieval;
 
 use Services_Libravatar;
 
-class LibravatarImageObtainer implements ProfileImageObtainer
-{
-    public function getImageURLForEmail($email)
-    {
+class LibravatarImageObtainer implements ProfileImageObtainer {
+    public function getImageURLForEmail($email) {
         $api = new Services_Libravatar();
         $api->setDefault("404");
 

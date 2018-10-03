@@ -2,6 +2,5 @@
 
 namespace App\Controller\IO;
 
-interface RawDataLoader
-{
+interface RawDataLoader {
 }

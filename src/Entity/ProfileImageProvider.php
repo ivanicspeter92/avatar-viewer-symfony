@@ -6,8 +6,7 @@ namespace App\Entity;
  * Class ProfileImageProvider An enumerator class for a set of profile image providers.
  * @package App\Entity
  */
-abstract class ProfileImageProvider
-{
+abstract class ProfileImageProvider {
     const Gravatar = "Gravatar";
     const Libravatar = "Libravatar";
 

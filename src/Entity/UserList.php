@@ -2,8 +2,7 @@
 
 namespace App\Entity;
 
-class UserList
-{
+class UserList {
     /**
      * @var array of User objects
      */
@@ -21,7 +20,7 @@ class UserList
 
         if (strtolower($sortedBy ) == "addeddate") {
             // seems like all sort functions take the address (&) of a variable and there isn't one which would return the sorted array as a result
-            usort($users, function($a, $b) {
+            usort($users, function(User $a, User $b) {
                 return $a->getAddedDate() <= $b->getAddedDate();
             });
         }

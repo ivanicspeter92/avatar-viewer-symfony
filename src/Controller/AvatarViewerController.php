@@ -13,13 +13,11 @@ use Symfony\Component\HttpFoundation\Request;
 use App\Controller\ProfileImageRetrieval\GravatarImageObtainer;
 use App\Controller\ProfileImageRetrieval\LibravatarImageObtainer;
 
-class AvatarViewerController extends AbstractController
-{
+class AvatarViewerController extends AbstractController {
     private $store;
     private $users;
 
-    public function __construct()
-    {
+    public function __construct() {
         $this->store = new JSONStore();
         $users = $this->store->getUsers();
 
@@ -31,8 +29,7 @@ class AvatarViewerController extends AbstractController
      * @param mixed $submissionResult
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function index($submissionResult = null)
-    {
+    public function index($submissionResult = null) {
         $formBuilder = $this->createFormBuilder();
         $formBuilder->add("email");
         $formBuilder->setAction($this->generateUrl("handleFormSubmission"));
@@ -50,8 +47,7 @@ class AvatarViewerController extends AbstractController
      * @Route("handleFormSubmission", name="handleFormSubmission")
      * @Template()
      */
-    public function handleRequest(Request $request)
-    {
+    public function handleRequest(Request $request) {
         $form = $request->request->get("form");
         $email = $form["email"];
 

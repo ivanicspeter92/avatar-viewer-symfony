@@ -25,7 +25,7 @@ class JSONStore extends PersistenceStore {
 
     public function getUsers() {
         $rawUsers = JSONDataLoader::loadJSONFileContentsAtPath($this->getUsersPath());
-        $parsedUsers = array_map(function (User $u) {
+        $parsedUsers = array_map(function ($u) {
             return User::fromJSON($u);
         }, $rawUsers);
 
