@@ -7,8 +7,12 @@ use Symfony\Component\Dotenv\Exception\PathException;
 use App\Entity\User;
 
 
+/**
+ * Class JSONStore A PersistenceStore subclass which users JSON files to store application-specific data.
+ * @package App\Controller\Persistence
+ */
 class JSONStore extends PersistenceStore {
-    const defaultPath = __DIR__ . "/../../Repository";  // not very elegant, should be using root path to the repository instead if possible
+    const defaultPath = __DIR__ . "/../../Repository";  // TODO: not very elegant, should be using root path to the repository instead if possible
 
     /**
      * @var string

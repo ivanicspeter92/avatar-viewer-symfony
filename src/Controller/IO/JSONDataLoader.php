@@ -5,6 +5,10 @@ namespace App\Controller\IO;
 use Doctrine\Instantiator\Exception\UnexpectedValueException;
 use Symfony\Component\Dotenv\Exception\PathException;
 
+/**
+ * Class JSONDataLoader Implements functionality for loading data from JSON files.
+ * @package App\Controller\IO
+ */
 class JSONDataLoader implements RawDataLoader {
     /**
      * @param $path string The absolute or relative path to read the data from.

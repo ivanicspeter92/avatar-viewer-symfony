@@ -4,6 +4,10 @@ namespace App\Entity;
 
 use App\Controller\DataValidation\EmailValidator;
 
+/**
+ * Class User A model class for User objects.
+ * @package App\Entity
+ */
 class User implements \JsonSerializable, JSONDeserializable {
     private $email;
     private $profile_image_url;
